@@ -18,4 +18,8 @@ public class CarService {
     public List<Car> readAll(){
         return repository.findAll();
     }
+
+    public Car save(Car carToSave){
+        return repository.save(carToSave);
+    }
 }

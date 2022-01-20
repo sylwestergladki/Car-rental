@@ -26,7 +26,6 @@ public class Car {
     private String brand;
     @NotBlank(message = "Car's color must not be empty")
     private String color;
-    @NotBlank(message = "Car's fuelType must not be empty")
     private FuelType fuelType;
 
 
