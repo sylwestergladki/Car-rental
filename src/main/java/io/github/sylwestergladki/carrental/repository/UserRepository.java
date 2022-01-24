@@ -1,17 +1,17 @@
 package io.github.sylwestergladki.carrental.repository;
 
 import io.github.sylwestergladki.carrental.model.Car;
-
+import io.github.sylwestergladki.carrental.model.User;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface CarRepository {
-    List<Car> findAll();
+public interface UserRepository {
+    List<User> findAll();
 
-    Optional<Car> findById(Integer i);
+    Optional<User> findById(Integer i);
 
-    Car save(Car entity);
+    User save(User entity);
 
     void deleteById(Integer id);
 
