@@ -6,6 +6,7 @@ import io.github.sylwestergladki.carrental.repository.CarRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CarService {
@@ -21,5 +22,13 @@ public class CarService {
 
     public Car save(Car carToSave){
         return repository.save(carToSave);
+    }
+
+    public Optional<Car> findById(int id){
+        return repository.findById(id);
+    }
+
+     public void delete(int id){
+      repository.deleteById(id);
     }
 }

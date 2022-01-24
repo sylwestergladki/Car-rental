@@ -7,6 +7,7 @@ import io.github.sylwestergladki.carrental.service.CarService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +29,7 @@ public class CarController {
     }
 
     @GetMapping
-    ResponseEntity<List<Car>> readAllTasks(){
+    ResponseEntity<List<Car>> readAllCars(){
         return ResponseEntity.ok(service.readAll());
     }
 
@@ -38,7 +39,20 @@ public class CarController {
         return ResponseEntity.created(URI.create("/" + result.getId())).body(result);
     }
 
+    @GetMapping("/{id}")
+    ResponseEntity<?> getCar(@PathVariable int id){
+        return service.findById(id).map(ResponseEntity::ok).
+                orElse(ResponseEntity.notFound().build());
+    }
 
+    @DeleteMapping("/{id}")
+    ResponseEntity<?> deleteCar(@PathVariable int id){
+        if(service.findById(id).isPresent()){
+            service.delete(id);
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
 
 
 }
