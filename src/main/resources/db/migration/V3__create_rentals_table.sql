@@ -3,7 +3,7 @@ create table rentals(
     id INT PRIMARY KEY AUTO_INCREMENT,
     car_id int not null ,
     user_id int not null ,
-    is_active bit
+    active bit
 );
 
 ALTER TABLE rentals

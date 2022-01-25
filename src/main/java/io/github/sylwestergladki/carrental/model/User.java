@@ -25,4 +25,5 @@ public class User {
     @NotBlank(message = "User's surename must not be empty")
     private String surename;
 
+
 }

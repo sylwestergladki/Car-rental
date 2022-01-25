@@ -7,9 +7,10 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.ZonedDateTime;
 
-@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
+@EqualsAndHashCode
 @ToString
 @Entity
 @Table(name = "rentals")
@@ -25,16 +26,22 @@ public class Rental {
     @ManyToOne
     private User user;
 
-    private boolean isActive;
+    private boolean active;
 
     private ZonedDateTime startDate;
 
     public void endRental() {
-        this.isActive = false;
+        this.active = false;
     }
 
-    public Rental() {
+    public Rental(Car car, User user) {
+        this.car = car;
+        this.user = user;
+        this.active = true;
+        this.startDate = ZonedDateTime.now();
     }
+
+
 
 
 }

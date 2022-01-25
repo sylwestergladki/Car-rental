@@ -40,6 +40,8 @@ public class CarController {
                 orElse(ResponseEntity.notFound().build());
     }
 
+
+
     @DeleteMapping("/{id}")
     ResponseEntity<?> deleteCar(@PathVariable int id){
         if(service.findById(id).isPresent()){

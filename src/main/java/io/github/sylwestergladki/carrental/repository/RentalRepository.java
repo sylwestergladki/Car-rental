@@ -1,6 +1,5 @@
 package io.github.sylwestergladki.carrental.repository;
 
-import io.github.sylwestergladki.carrental.model.Car;
 import io.github.sylwestergladki.carrental.model.Rental;
 
 import java.util.List;
@@ -15,4 +14,5 @@ public interface RentalRepository {
 
     void deleteById(Integer id);
 
+    List<Rental> getByActiveIsTrueAndCar_Id(int carId);
 }
