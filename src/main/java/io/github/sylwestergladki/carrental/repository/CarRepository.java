@@ -14,5 +14,5 @@ public interface CarRepository {
     Car save(Car entity);
 
     void deleteById(Integer id);
-
+    boolean existsById(int id);
 }

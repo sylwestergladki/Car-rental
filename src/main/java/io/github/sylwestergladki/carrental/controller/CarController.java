@@ -40,7 +40,17 @@ public class CarController {
                 orElse(ResponseEntity.notFound().build());
     }
 
-
+    @PutMapping("/{id}")
+    ResponseEntity<?> updateCar(@PathVariable int id, @RequestBody @Valid Car toUpdate){
+        if(!service.existsById(id)){
+            return ResponseEntity.notFound().build();
+        }
+        service.findById(id).ifPresent(car -> {
+            car.updateFrom(toUpdate);
+            service.save(car);
+        });
+        return ResponseEntity.noContent().build();
+    }
 
     @DeleteMapping("/{id}")
     ResponseEntity<?> deleteCar(@PathVariable int id){

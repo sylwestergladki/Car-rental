@@ -1,10 +1,7 @@
 package io.github.sylwestergladki.carrental.controller;
 
 
-import io.github.sylwestergladki.carrental.model.Car;
 import io.github.sylwestergladki.carrental.model.Rental;
-import io.github.sylwestergladki.carrental.model.User;
-import io.github.sylwestergladki.carrental.service.CarService;
 import io.github.sylwestergladki.carrental.service.RentalService;
 import io.github.sylwestergladki.carrental.service.command.AddRentalCommand;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +30,15 @@ public class RentalController {
     ResponseEntity<Rental> createRental(@RequestBody @Valid AddRentalCommand rentalToSave){
         Rental result = service.save(rentalToSave);
         return ResponseEntity.created(URI.create("/" + result.getId())).body(result);
+    }
+
+    @DeleteMapping("/{id}")
+    ResponseEntity<Rental> deleteRental(@PathVariable int id){
+        if(service.findById(id).isPresent()){
+            service.delete(id);
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
     }
 
 

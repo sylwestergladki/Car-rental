@@ -30,7 +30,12 @@ public class Car {
     private FuelType fuelType;
 
 
-
+    public void updateFrom(final Car source){
+        this.model = source.model;
+        this.brand = source.brand;
+        this.color = source.color;
+        this.fuelType = source.fuelType;
+    }
 
 
 
