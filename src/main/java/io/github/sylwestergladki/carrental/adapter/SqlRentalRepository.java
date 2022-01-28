@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface SqlRentalRepository extends RentalRepository, JpaRepository<Rental,Integer> {
+public interface SqlRentalRepository extends RentalRepository, CrudRepository<Rental,Integer> {
 
    List<Rental> getByActiveIsTrueAndCar_Id(int carId);
 }

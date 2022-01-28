@@ -6,11 +6,11 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.ZonedDateTime;
+import java.util.Objects;
 
 @NoArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode
 @ToString
 @Entity
 @Table(name = "rentals")
@@ -41,7 +41,16 @@ public class Rental {
         this.startDate = ZonedDateTime.now();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Rental rental = (Rental) o;
+        return car.equals(rental.car) && user.equals(rental.user);
+    }
 
-
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(car, user);
+    }
 }

@@ -1,10 +1,7 @@
 package io.github.sylwestergladki.carrental.model;
 
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -13,6 +10,8 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @ToString
 @EqualsAndHashCode
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "users")
 public class User {
@@ -25,5 +24,8 @@ public class User {
     @NotBlank(message = "User's surename must not be empty")
     private String surename;
 
-
+    public User(String name, String surename) {
+        this.name = name;
+        this.surename = surename;
+    }
 }

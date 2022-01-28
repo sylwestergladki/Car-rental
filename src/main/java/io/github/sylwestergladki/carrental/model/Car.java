@@ -1,10 +1,7 @@
 package io.github.sylwestergladki.carrental.model;
 
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -13,6 +10,8 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @ToString
 @EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "cars")
 public class Car {
@@ -29,6 +28,12 @@ public class Car {
     private String color;
     private FuelType fuelType;
 
+    public Car(String model, String brand, String color, FuelType fuelType) {
+        this.model = model;
+        this.brand = brand;
+        this.color = color;
+        this.fuelType = fuelType;
+    }
 
     public void updateFrom(final Car source){
         this.model = source.model;

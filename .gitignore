@@ -3,7 +3,8 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
-*/rental.mv.db
+C:\Users\SG\Desktop\car-rental\car-rental\rental.mv.db
+C:\Users\SG\Desktop\car-rental\car-rental\rental.trace.db
 
 ### STS ###
 .apt_generated
