@@ -16,22 +16,22 @@ public class CarService {
         this.repository = repository;
     }
 
-    public List<Car> readAll(){
+    public List<Car> readAllCars(){
         return repository.findAll();
     }
 
-    public Car save(Car carToSave){
+    public Car addCar(Car carToSave){
         return repository.save(carToSave);
     }
 
-    public Optional<Car> findById(int id){
+    public Optional<Car> findCar(int id){
         return repository.findById(id);
     }
 
-     public void delete(int id){
+     public void deleteCar(int id){
       repository.deleteById(id);
     }
-    public boolean existsById(int id){
+    public boolean existsCar(int id){
         return repository.existsById(id);
     };
 

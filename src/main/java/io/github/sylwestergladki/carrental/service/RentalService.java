@@ -25,19 +25,19 @@ public class RentalService {
         this.userRepository = userRepository;
     }
 
-    public List<Rental> readAll(){
+    public List<Rental> readAllRentals(){
         return repository.findAll();
     }
 
-    public Optional<Rental> findById(int id){
+    public Optional<Rental> findRental(int id){
         return repository.findById(id);
     }
 
-     public void delete(int id){
+     public void deleteRental(int id){
       repository.deleteById(id);
     }
 
-    public Rental save(AddRentalCommand command) {
+    public Rental addRental(AddRentalCommand command) {
       final Car car = carRepository.findById(command.getCarId()).orElseThrow(() -> new IllegalArgumentException("Car does not exist"));
       final User user = userRepository.findById(command.getUserId()).orElseThrow(() -> new IllegalArgumentException("User does not exist"));
       List<Rental> rentals = repository.getByActiveIsTrueAndCar_Id(command.getCarId());

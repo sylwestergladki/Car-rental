@@ -1,14 +1,8 @@
 package io.github.sylwestergladki.carrental.controller;
 
 
-import io.github.sylwestergladki.carrental.model.Car;
 import io.github.sylwestergladki.carrental.model.User;
-import io.github.sylwestergladki.carrental.repository.CarRepository;
-import io.github.sylwestergladki.carrental.service.CarService;
 import io.github.sylwestergladki.carrental.service.UserService;
-import org.apache.catalina.Service;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,25 +23,25 @@ public class UserController {
 
     @GetMapping
     ResponseEntity<List<User>> readAllUsers(){
-        return ResponseEntity.ok(service.readAll());
+        return ResponseEntity.ok(service.readAllUsers());
     }
 
     @PostMapping
     ResponseEntity<User> saveUser(@RequestBody @Valid User userToSave){
-        User result = service.save(userToSave);
+        User result = service.addUser(userToSave);
         return ResponseEntity.created(URI.create("/" + result.getId())).body(result);
     }
 
     @GetMapping("/{id}")
     ResponseEntity<?> getUser(@PathVariable int id){
-        return service.findById(id).map(ResponseEntity::ok).
+        return service.findUser(id).map(ResponseEntity::ok).
                 orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
     ResponseEntity<?> deleteUser(@PathVariable int id){
-        if(service.findById(id).isPresent()){
-            service.delete(id);
+        if(service.findUser(id).isPresent()){
+            service.deleteUser(id);
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.notFound().build();

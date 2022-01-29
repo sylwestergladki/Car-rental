@@ -3,15 +3,11 @@ package io.github.sylwestergladki.carrental.service;
 import io.github.sylwestergladki.carrental.model.Car;
 import io.github.sylwestergladki.carrental.model.FuelType;
 import io.github.sylwestergladki.carrental.repository.CarRepository;
-import org.junit.Assert;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class CarServiceTest {
 
@@ -23,7 +19,7 @@ class CarServiceTest {
         CarRepository repository = mock(CarRepository.class);
         CarService service = new CarService(repository);
         //when
-        var result = service.readAll();
+        var result = service.readAllCars();
         //then
         assertThat(result).asList();
     }
@@ -33,10 +29,12 @@ class CarServiceTest {
         //given
         CarRepository repository = mock(CarRepository.class);
         CarService service = new CarService(repository);
-        repository.save(new Car("AUDI","A4","black", FuelType.DIESEL));
+        Car car = new Car("AUDI","A4","black", FuelType.DIESEL);
+        when(repository.save(car)).thenReturn(car);
+
         //when
-        var result = service.readAll();
+        var result = service.addCar(new Car("AUDI","A4","black", FuelType.DIESEL));
         //then
-        assertThat(result).asList();
+        assertThat(result).isEqualTo(car);
     }
 }

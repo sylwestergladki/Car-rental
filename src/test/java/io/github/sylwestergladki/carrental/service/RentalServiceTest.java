@@ -36,7 +36,7 @@ class RentalServiceTest {
         when(carRepository.findById(anyInt())).thenReturn(cars);
         when(userRepository.findById(anyInt())).thenReturn(users);
         //when
-        var exception = catchThrowable(()->service.save(new AddRentalCommand(1,1)));
+        var exception = catchThrowable(()->service.addRental(new AddRentalCommand(1,1)));
         //then
         assertThat(exception)
                 .isInstanceOf(IllegalArgumentException.class)
@@ -51,7 +51,7 @@ class RentalServiceTest {
         when(carRepository.findById(anyInt())).thenReturn(cars);
         when(userRepository.findById(anyInt())).thenReturn(users);
         //when
-        var exception = catchThrowable(()->service.save(new AddRentalCommand(1,1)));
+        var exception = catchThrowable(()->service.addRental(new AddRentalCommand(1,1)));
         //then
         assertThat(exception)
                 .isInstanceOf(IllegalArgumentException.class)
@@ -72,7 +72,7 @@ class RentalServiceTest {
         when(rentalRepository.getByActiveIsTrueAndCar_Id(anyInt())).thenReturn(rentals);
 
         //when
-        var exception = catchThrowable(()->service.save(new AddRentalCommand(1,1)));
+        var exception = catchThrowable(()->service.addRental(new AddRentalCommand(1,1)));
 
         //then
         assertThat(exception)

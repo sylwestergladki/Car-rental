@@ -3,6 +3,7 @@ package io.github.sylwestergladki.carrental.controller;
 import io.github.sylwestergladki.carrental.model.Car;
 import io.github.sylwestergladki.carrental.model.FuelType;
 import io.github.sylwestergladki.carrental.repository.CarRepository;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,17 +24,19 @@ class CarControllerTest {
     @Autowired
     private CarRepository repo;
 
-
+    @DisplayName("should return all task for get method /cars")
     @Test
-    void httpGet_returnAllTasks(){
+    void httpGet_returnAllCars() {
         //given
         int initial = repo.findAll().size();
-        repo.save(new Car("AUDI","A4","black", FuelType.DIESEL));
-        repo.save(new Car("VW","Polo","black", FuelType.PETROL));
+        repo.save(new Car("AUDI", "A4", "black", FuelType.DIESEL));
+        repo.save(new Car("VW", "Polo", "black", FuelType.PETROL));
 
         //when
-        Car[] result = restTemplate.getForObject("http://localhost:" + port + "/cars",Car[].class);
+        Car[] result = restTemplate.getForObject("http://localhost:" + port + "/cars", Car[].class);
 
         //then
         assertThat(result).hasSize(initial + 2);
-}}
+    }
+
+}

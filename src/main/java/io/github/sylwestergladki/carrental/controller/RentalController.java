@@ -23,19 +23,19 @@ public class RentalController {
 
     @GetMapping
     ResponseEntity<List<Rental>> readAllRentals(){
-        return ResponseEntity.ok(service.readAll());
+        return ResponseEntity.ok(service.readAllRentals());
     }
 
     @PostMapping
     ResponseEntity<Rental> createRental(@RequestBody @Valid AddRentalCommand rentalToSave){
-        Rental result = service.save(rentalToSave);
+        Rental result = service.addRental(rentalToSave);
         return ResponseEntity.created(URI.create("/" + result.getId())).body(result);
     }
 
     @DeleteMapping("/{id}")
     ResponseEntity<Rental> deleteRental(@PathVariable int id){
-        if(service.findById(id).isPresent()){
-            service.delete(id);
+        if(service.findRental(id).isPresent()){
+            service.deleteRental(id);
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.notFound().build();
