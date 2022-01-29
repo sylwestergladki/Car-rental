@@ -23,7 +23,7 @@ or download the zip.
 
 ## How to use?
 
-To send request use a Postman. The app supports HTTP method. The requests have to be in JSON format.
+To send request use a Postman. The app supports HTTP methods. The requests have to be in JSON format.
 
 for endpoint `/cars`
 - GET method - return a list of cars
