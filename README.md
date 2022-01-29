@@ -1,6 +1,6 @@
 # Car-rental
 
-Car-rental is a simple backend for car rental made for improve my programming skills.
+Car-rental is a simple REST API for car rental made for improve my programming skills.
 
 ## Tools & technologies I've used
 - Spring boot 
