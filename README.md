@@ -24,6 +24,10 @@ or download the zip.
 ## How to use?
 
 To send request use a Postman. The app supports HTTP methods. The requests have to be in JSON format.
+- You can add car, user and rental
+- You can modify a car's properties
+- You can delete car, user and rental
+- You cannot rent a car which is already in rent
 
 for endpoint `/cars`
 - GET method - return a list of cars
